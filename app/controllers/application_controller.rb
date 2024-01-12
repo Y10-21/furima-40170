@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-<<<<<<< HEAD
   before_action :basic_auth
   
   private
@@ -8,6 +7,4 @@ class ApplicationController < ActionController::Base
       username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
     end
   end
-=======
->>>>>>> parent of d07a21b (commit basic)
 end

@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    Merchandise.create(merchandise_params)
+    @merchandise = Merchandise.create(merchandise_params)
     redirect_to '/'
   end
 

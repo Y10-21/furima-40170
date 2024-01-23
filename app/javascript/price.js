@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const ContentPrice = document.getElementById('item-price');
   const ContentCommission = document.getElementById('add-tax-price');
-  const ContentProfit =document.getElementById('profit');
+  const ContentProfit = document.getElementById('profit');
 
   if (!ContentPrice) {
     return false;

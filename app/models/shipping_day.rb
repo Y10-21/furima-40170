@@ -7,5 +7,5 @@ class Shipping_day < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :articles
+  has_many :merchandises
 end

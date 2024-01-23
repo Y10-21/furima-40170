@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+module MerchandisesHelper
   def index
   end
 

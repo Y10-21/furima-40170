@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("turbo:load", function () {
   const ContentPrice = document.getElementById('item-price');
   const ContentCommission = document.getElementById('add-tax-price');
   const ContentProfit = document.getElementById('profit');

@@ -8,7 +8,11 @@ class MerchandisesController < ApplicationController
 
   def create
     @merchandise = Merchandise.create(merchandise_params)
-    redirect_to '/'
+    if @merchandise.save
+      redirect_to '/'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

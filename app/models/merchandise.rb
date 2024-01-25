@@ -19,7 +19,6 @@ class Merchandise < ApplicationRecord
   validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
 
   validates :price, inclusion: { in: 300..9_999_999 }
-  validates :price, format: { with: /\A[0-9]+\z/ }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category

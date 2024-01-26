@@ -148,7 +148,7 @@
       <% else %>
         <% @merchandises.each do |merchandise| %>
         <li class='list'>
-          <%= link_to "#" do %>
+          <%= link_to merchandise_path(merchandise.id) do %>
             <div class='item-img-content'>
               <%= image_tag merchandise.image, class: "item-img" if merchandise.image.attached? %>
               <%# 商品が売れていればsold outを表示しましょう %>

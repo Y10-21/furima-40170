@@ -22,6 +22,24 @@ class MerchandisesController < ApplicationController
     @merchandise = Merchandise.find(params[:id])
   end
 
+  def edit
+    @merchandise = Merchandise.find(params[:id])
+    if user_signed_in? && @merchandise.user == current_user
+      @merchandise
+    else
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @merchandise = Merchandise.find(params[:id])
+    if @merchandise.update(merchandise_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def merchandise_params

@@ -1,5 +1,5 @@
 class MerchandisesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :destroy]
   before_action :set_merchandise, except: [:index, :new, :create]
 
   def index
@@ -35,6 +35,15 @@ class MerchandisesController < ApplicationController
       redirect_to @merchandise
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @merchandise.user == current_user
+      @merchandise.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 

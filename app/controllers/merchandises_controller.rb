@@ -42,6 +42,8 @@ class MerchandisesController < ApplicationController
     if @merchandise.user == current_user
       @merchandise.destroy
       redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 

@@ -1,5 +1,6 @@
 class MerchandisesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_merchandise, except: [:index, :new, :create]
 
   def index
     @merchandises = Merchandise.order('created_at DESC')
@@ -19,12 +20,10 @@ class MerchandisesController < ApplicationController
   end
 
   def show
-    @merchandise = Merchandise.find(params[:id])
   end
 
   def edit
-    @merchandise = Merchandise.find(params[:id])
-    if user_signed_in? && @merchandise.user == current_user
+    if @merchandise.user == current_user
       @merchandise
     else
       redirect_to root_path
@@ -32,9 +31,8 @@ class MerchandisesController < ApplicationController
   end
 
   def update
-    @merchandise = Merchandise.find(params[:id])
     if @merchandise.update(merchandise_params)
-      redirect_to root_path
+      redirect_to @merchandise
     else
       render :edit, status: :unprocessable_entity
     end
@@ -45,5 +43,9 @@ class MerchandisesController < ApplicationController
   def merchandise_params
     params.require(:merchandise).permit(:name, :image, :explanation, :category_id, :condition_id, :shipping_load_id,
                                         :prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def set_merchandise
+    @merchandise = Merchandise.find(params[:id])
   end
 end

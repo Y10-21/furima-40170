@@ -38,6 +38,11 @@ class MerchandisesController < ApplicationController
     end
   end
 
+  def destroy
+    @merchandise.destroy
+    redirect_to root_path
+  end
+
   private
 
   def merchandise_params

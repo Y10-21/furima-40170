@@ -17,5 +17,6 @@ class User < ApplicationRecord
   validates :name_first_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/ }
   validates :name_secound_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/ }
 
+  has_many :purchases
   has_many :merchandises
 end

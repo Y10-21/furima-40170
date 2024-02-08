@@ -17,4 +17,6 @@ class PurchaseAddress
     purchase = Purchase.create(merchandise_id: merchandise_id, user_id: user_id)
     Adress.create(post_number: post_number, prefecture_id: prefecture_id, post_city: post_city, post_address: post_address, telephone_number: telephone_number ,purchase_id: purchase_id)
   end
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :prefecture
 end

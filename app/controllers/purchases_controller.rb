@@ -16,8 +16,6 @@ class PurchasesController < ApplicationController
     end
   end
 
-
-
   private
   def set_merchandise
     @merchandise = Merchandise.find(params[:merchandise_id])

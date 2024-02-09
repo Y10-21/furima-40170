@@ -6,11 +6,11 @@ class PurchaseAddress
   with_options presence: true do
     validates :merchandise_id
     validates :user_id
-    validates :post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :post_number, format: {with: /\A\d{3}-\d{4}\z/}
+    validates :prefecture_id, numericality: { other_than: 1}
     validates :post_city
     validates :post_address
-    validates :telephone_number, numericality: { only_integer: true }, length: { is: 10 }
+    validates :telephone_number, numericality: { only_integer: true }, length: { in: 10..11 }
   end
   def save
     # 各テーブルにデータを保存する処理を書く

@@ -1,9 +1,10 @@
 class PurchaseAddress
   include ActiveModel::Model
-  attr_accessor :user_id, :merchandise_id, :post_number, :prefecture_id, :post_city ,:post_address, :post_building, :telephone_number
+  attr_accessor :user_id, :merchandise_id, :post_number, :prefecture_id, :post_city ,:post_address, :post_building, :telephone_number, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
+    validates :token
     validates :merchandise_id
     validates :user_id
     validates :post_number, format: {with: /\A\d{3}-\d{4}\z/}

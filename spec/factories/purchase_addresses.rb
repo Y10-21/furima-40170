@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :purchase_address do
+    token {"tok_abcdefghijk00000000000000000"}
     post_number { "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 4)}" }
     post_city { Faker::Address.city }
     post_address { Faker::Address.building_number }

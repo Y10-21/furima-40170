@@ -2,6 +2,7 @@ class PurchasesController < ApplicationController
   before_action :set_merchandise
   before_action :authenticate_user!, only: [:index]
   before_action :redirect_to_root_path, only: [:index]
+  before_action :user_redirect, only: [:index]
 
   def index
     @merchandise
@@ -40,6 +41,11 @@ class PurchasesController < ApplicationController
     )
   end
 
+  def user_redirect
+    if current_user.id == @merchandise.user.id
+      redirect_to root_path
+    end
+  end
   def redirect_to_root_path
     if @merchandise.purchase
       redirect_to root_path

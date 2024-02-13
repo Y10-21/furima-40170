@@ -1,7 +1,7 @@
 class MerchandisesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :destroy]
   before_action :set_merchandise, except: [:index, :new, :create]
-
+  before_action :redirect_to_root_path, only: [:edit]
   def index
     @merchandises = Merchandise.order('created_at DESC')
   end
@@ -56,5 +56,11 @@ class MerchandisesController < ApplicationController
 
   def set_merchandise
     @merchandise = Merchandise.find(params[:id])
+  end
+
+  def redirect_to_root_path
+    if @merchandise.purchase
+      redirect_to root_path
+    end
   end
 end

@@ -59,8 +59,8 @@ class MerchandisesController < ApplicationController
   end
 
   def redirect_to_root_path
-    if @merchandise.purchase
-      redirect_to root_path
-    end
+    return unless @merchandise.purchase
+
+    redirect_to root_path
   end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PurchaseAddress, type: :model do
   before do
     user = FactoryBot.create(:user)
-    merchandise = FactoryBot.create(:merchandise, user: user)
+    merchandise = FactoryBot.create(:merchandise, user:)
     @purchase_address = FactoryBot.build(:purchase_address, user_id: user.id, merchandise_id: merchandise.id)
   end
 
@@ -26,17 +26,17 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'post_numberが空だと保存できないこと' do
         @purchase_address.post_number = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Post number can't be blank", "Post number is invalid")
+        expect(@purchase_address.errors.full_messages).to include("Post number can't be blank", 'Post number is invalid')
       end
       it 'post_numberは、「3桁ハイフン4桁」の半角文字列意外だと保存できないこと' do
         @purchase_address.post_number = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Post number is invalid")
+        expect(@purchase_address.errors.full_messages).to include('Post number is invalid')
       end
       it 'prefecture_idを選択していないと保存できないこと' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Prefecture must be other than 1")
+        expect(@purchase_address.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it 'post_cityが空だと保存できないこと' do
         @purchase_address.post_city = ''
@@ -56,17 +56,17 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'telephone_numberが10文字以下だと保存できないこと' do
         @purchase_address.telephone_number = '1234'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is too short (minimum is 10 characters)")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is too short (minimum is 10 characters)')
       end
       it 'telephone_numberが11文字以上だと保存できないこと' do
         @purchase_address.telephone_number = '123456789012'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is too long (maximum is 11 characters)")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is too long (maximum is 11 characters)')
       end
       it 'telephone_numberが半角数値以外だと保存できないこと' do
         @purchase_address.telephone_number = 'testtesttes'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is not a number")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is not a number')
       end
     end
   end

@@ -1,4 +1,5 @@
 const pay = () => {
+  if (!document.getElementById("charge-form")) return;
   const publicKey = gon.public_key
   const payjp = Payjp(publicKey)
   const elements = payjp.elements();
